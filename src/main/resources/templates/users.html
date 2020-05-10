@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
+<title>SB Admin 2 - Tables</title>
+
+
+<!-- Custom fonts for this template -->
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+<!-- Custom styles for this page -->
+<link href="vendor/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet">
+
+<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		 var table = $('#noticeTable').DataTable({
+		    	"lengthChange": false,
+		    
+		    	"order": true,
+		    	"pageLength": 5,
+			    "language": {
+			        "emptyTable": "데이터가 없어요.",
+			        "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+			        "info": "현재 _START_ - _END_ / _TOTAL_건",
+			        "infoEmpty": "데이터 없음",
+			        "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+			        "search": "에서 검색: ",
+			        "zeroRecords": "일치하는 데이터가 없어요.",
+			        "loadingRecords": "로딩중...",
+			        "processing":     "잠시만 기다려 주세요...",
+			        "paginate": {
+			            "next": "다음",
+			            "previous": "이전"
+			        }
+			    },
+			});
+		 
+		 
+	});
+
+</script>
+</head>
+
+<body id="page-top">
+
+   <th:block th:include="sidebar/top"></th:block>
+
+	<!-- Begin Page Content -->
+	<div class="container-fluid">
+
+		<!-- Page Heading -->
+		<h1 class="h3 mb-2 text-gray-800">공지 사항</h1>
+		<!--           <p class="mb-4">공지 사항</p>
+ -->
+
+		<!-- DataTales Example -->
+		<div class="card shadow mb-4">
+
+
+			<div class="card-body">
+				<button type="button" class="btn btn-outline-secondary"
+					onclick="location.href='addNotice' ">글쓰기</button>
+				<table class="table table-hover" id="noticeTable">
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>날짜</th>
+							<th>조회수</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+					 	<tr th:each="user:${users}">
+							<td th:text="${user.id}"></td>
+							<td>제목</td>
+							<td>작성자</td>
+							<td>날짜</td>
+							<td>조회수</td>
+
+						</tr> 
+
+					</tbody>
+
+				</table>
+
+				<hr />
+
+
+				<div class="table-responsive"></div>
+			</div>
+		</div>
+
+	</div>
+	<!-- /.container-fluid -->
+
+	</div>
+	<!-- End of Main Content -->
+
+	<!-- Footer -->
+    <th:block th:include="sidebar/bottom"></th:block>
+
+
+	<!-- Bootstrap core JavaScript-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="js/sb-admin-2.min.js"></script>
+
+	<!-- Page level plugins -->
+	<script src="vendor/datatables/jquery.dataTables.min.js">
+		
+	</script>
+	<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+	<!-- Page level custom scripts -->
+	<script src="js/demo/datatables-demo.js"></script>
+
+
+</body>
+
+</html>

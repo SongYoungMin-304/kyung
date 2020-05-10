@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.song.kyung.Mapper.MessageMapper">
+
+	<!-- 메신저 전체 조회 -->
+	<select id='getMessages' resultType="com.song.kyung.Vo.Message"
+		parameterType='String'>
+		SELECT send_user_id, message, reg_date
+		FROM message AS a
+		INNER JOIN
+		(SELECT msg_id, MAX(reg_date) AS mx
+		FROM message
+		GROUP BY send_user_id
+		) AS b
+		on a.msg_id = b.msg_id
+		WHERE reg_date = mx
+		AND user_id =#{id}
+		ORDER BY reg_date desc
+	</select>
+
+</mapper>
