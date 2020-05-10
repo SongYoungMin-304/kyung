@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.song.kyung.Mapper.UserMapper">
+
+<!-- 회원가입 -->
+	<insert id="addUserAction">
+		insert into user (id,email,password,role,fail_count, reg_date)
+		values
+		(#{id},#{email},#{password},"user",0,sysdate())
+	</insert>
+
+<!-- 로그인 부분 -->
+	<select id='getUserByUserId' resultType="com.song.kyung.Vo.User"  parameterType="java.lang.String">
+		SELECT 
+		id,
+		email,
+	    password, 
+	    role,
+	    fail_count,
+	    reg_date,
+	    upt_date
+		from user
+		where id = #{id}
+	</select>
+	
+	<!-- 사용자 전체 조회 -->
+	<select id='getUsers' resultType="com.song.kyung.Vo.User">
+		SELECT 
+		id,
+		email,
+	    password, 
+	    role,
+	    fail_count,
+	    reg_date,
+	    upt_date
+		from user
+	</select>
+	
+
+<!-- 사용자 존재 여부 -->	
+	<select id='getCountUserByUserId' resultType="java.lang.Integer"  parameterType="java.lang.String">
+		SELECT count(*)
+		from user
+		where id = #{id}
+	</select>
+	
+	
+<!-- 실패 횟수 조회 -->	
+	<select id='getFailCountByUserId' resultType="java.lang.Integer"  parameterType="java.lang.String">
+		select fail_count
+		from user
+		where id = #{id}
+	</select>
+	
+	
+<!-- 실패 횟수 증가 -->	
+	<update id='addFailCountByUserId'  parameterType="java.lang.String">
+		update user set
+		fail_count = fail_count+ 1
+		where id = #{id}
+	</update>
+
+<!-- 실패 횟수 초기화 -->	
+	<update id='initFailCountByUserId'  parameterType="java.lang.String">
+		update user set
+		fail_count = 0
+		where id = #{id}
+	</update>
+	
+<!-- 잠그기 -->	
+	<update id='lockByUserId'  parameterType="java.lang.String">
+		update user set
+		lock_yn = "Y"
+		where id = #{id}
+	</update>
+	
+	<!-- 잠김 여부 확인 -->	
+	<select id='selectLockByUserId' resultType="java.lang.String"  parameterType="java.lang.String">
+		select lock_yn
+		from user
+		where id = #{id}
+	</select>
+	
+
+
+
+	
+	
+
+</mapper>

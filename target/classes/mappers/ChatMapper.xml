@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.song.kyung.Mapper.ChatMapper">
+
+    <!--  채팅 등록 -->
+   <insert id="addChatAction">
+      insert into hellomessage (name,contents,send_date,channel_type)
+      values
+      (#{name}, #{contents}, #{send_date},#{channel_type})
+   </insert>
+   
+   <!-- 채팅 창 보여주기 -->
+    <select id='getChats' resultType="com.song.kyung.Vo.HelloMessage">
+      SELECT 
+      name,
+      contents,
+      send_date, 
+      channel_type
+      from hellomessage
+   </select>
+   
+</mapper>
