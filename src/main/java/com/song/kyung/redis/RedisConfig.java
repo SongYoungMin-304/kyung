@@ -11,7 +11,7 @@ import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import com.song.kyung.WebSocket.ChatMessage;
+import com.song.kyung.Vo.ChatMessage;
 
 
 @Configuration

@@ -1,4 +1,4 @@
-package com.song.kyung.WebSocket;
+package com.song.kyung.Controller;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -13,6 +13,9 @@ import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.song.kyung.Repository.ChatRoomRepository;
+import com.song.kyung.Vo.ChatMessage;
+import com.song.kyung.Vo.ChatMessage.MessageType;
 import com.song.kyung.redis.RedisPublisher;
 
 import lombok.RequiredArgsConstructor;

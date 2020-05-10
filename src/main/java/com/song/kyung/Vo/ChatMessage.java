@@ -1,4 +1,4 @@
-package com.song.kyung.WebSocket;
+package com.song.kyung.Vo;
 
 import lombok.Getter;
 import lombok.Setter;

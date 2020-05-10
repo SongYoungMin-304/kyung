@@ -1,4 +1,4 @@
-package com.song.kyung.WebSocket;
+package com.song.kyung.Vo;
 
 import java.io.Serializable;
 import java.util.UUID;

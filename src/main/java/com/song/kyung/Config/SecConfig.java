@@ -70,8 +70,8 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
 				// 위에 것을 제외한 나머지 Url는 인증 필요
 
 				.anyRequest()
-				//.authenticated();
-		 .permitAll();
+				.authenticated();
+		 //.permitAll();
 		// .permitAll();
 
 		// .access("hasAuthority('ADMIN_USER')");

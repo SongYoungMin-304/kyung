@@ -1,5 +1,7 @@
-package com.song.kyung.WebSocket;
+package com.song.kyung.Controller;
 
+import java.security.Principal;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.song.kyung.Repository.ChatRoomRepository;
+import com.song.kyung.Vo.ChatMessage;
+import com.song.kyung.Vo.ChatRoom;
+
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -27,8 +33,9 @@ public class ChatRoomController {
     private final ChatRoomRepository chatRoomRepository;
     // 채팅 리스트 화면
     @GetMapping("/room")
-    public String rooms(Model model) {
-        return "/chat/room";
+    public String rooms(Model model, Principal principal) {
+        model.addAttribute("sender", principal.getName());
+    	return "/chat/room";
     }
     // 모든 채팅방 목록 반환
     @GetMapping("/rooms")
@@ -36,6 +43,15 @@ public class ChatRoomController {
     public List<ChatRoom> room() {
         return chatRoomRepository.findAllRoom();
     }
+    
+    @GetMapping("/getMyId")
+    @ResponseBody
+	public List<String> getMyId(Principal principal) {
+		List<String> list = new LinkedList();
+		list.add(principal.getName());
+		return list;
+	}
+    
     // 채팅방 생성
     @PostMapping("/room")
     @ResponseBody
