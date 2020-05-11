@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.song.kyung.Mapper.AuthNumberMapper">
+
+<!-- 회원가입 -->
+	<insert id="AuthNumberAction">
+		insert into AuthNumber (email,random,reg_date)
+		values
+		(#{email},#{random},sysdate())
+	</insert>
+	
+</mapper>
